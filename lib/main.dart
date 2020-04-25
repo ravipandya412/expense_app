@@ -14,8 +14,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  // String titleInput;
-  //String amountInput;
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
@@ -24,6 +22,8 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Weekly Expense App'),
+        //Icon ADD button
+        actions: <Widget>[IconButton(icon: Icon(Icons.add), onPressed: () {})],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -42,6 +42,9 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      //FloationAction Add Button
+      floatingActionButton: FloatingActionButton(child: Icon(Icons.add),onPressed: (){},),
     );
   }
 }
