@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Weekly Expense App',
+      theme: ThemeData(primarySwatch: Colors.purple),
       home: MyHomePage(),
     );
   }
@@ -37,13 +38,13 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   void _addNewTransaction(String txTitle, double txAmount) {
-  //After fetching value frm text fields, add those values in to object
+    //After fetching value frm text fields, add those values in to object
     final newTransaction = Transaction(
         id: DateTime.now().toString(),
         title: txTitle,
         amount: txAmount,
         date: DateTime.now());
-   //Adding transaction object in to list
+    //Adding transaction object in to list
     setState(() {
       _userTransaction.add(newTransaction);
     });
