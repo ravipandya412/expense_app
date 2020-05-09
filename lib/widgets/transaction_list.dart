@@ -6,7 +6,7 @@ class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
   final Function removeTransaction;
 
-  TransactionList(this.transactions,this.removeTransaction);
+  TransactionList(this.transactions, this.removeTransaction);
   @override
   Widget build(BuildContext context) {
     return //Transaction Card
@@ -54,7 +54,8 @@ class TransactionList extends StatelessWidget {
                     trailing: IconButton(
                         icon: Icon(Icons.delete),
                         color: Colors.red,
-                        onPressed: () => removeTransaction(transactions[index].id)),
+                        onPressed: () =>
+                            removeTransaction(transactions[index].id)),
                   ),
                 );
               },
