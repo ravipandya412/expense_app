@@ -14,52 +14,44 @@ class TransactionList extends StatelessWidget {
       child: transactions.isEmpty
           ? Column(
               children: <Widget>[
-                Text('No transaction added yet!',
-                style: Theme.of(context).textTheme.title,),
-                SizedBox(height: 10,),
+                Text(
+                  'No transaction added yet!',
+                  style: Theme.of(context).textTheme.title,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 Container(
-                  height: 200,
-                  child: Image.asset('assets/images/waiting.png',
-                fit: BoxFit.cover,))
+                    height: 200,
+                    child: Image.asset(
+                      'assets/images/waiting.png',
+                      fit: BoxFit.cover,
+                    ))
               ],
             )
           : ListView.builder(
               itemBuilder: (ctx, index) {
                 return Card(
-                    child: Row( 
-                  children: <Widget>[
+                  elevation: 5,
+                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                  child: ListTile(
                     //Amount
-                    Container(
-                      margin:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Theme.of(context).primaryColor, width: 2)),
-                      padding: EdgeInsets.all(10),
-                      child: Text(
-                        '\$${transactions[index].amount.toStringAsFixed(2)}',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Theme.of(context).primaryColor),
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: FittedBox(
+                            child: Text('\$${transactions[index].amount}')),
                       ),
                     ),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          //title
-                          Text(
-                            transactions[index].title,
-                            style: Theme.of(context).textTheme.title,
-                          ),
-                          //Date
-                          Text(
-                            DateFormat.yMMMd().format(transactions[index].date),
-                            style: TextStyle(color: Colors.grey),
-                          )
-                        ]),
-                  ],
-                ));
+                    //ItemDate
+                    title: Text(transactions[index].title,
+                        style: Theme.of(context).textTheme.title),
+                    //Purchase Date
+                    subtitle: Text(
+                        DateFormat.yMMMd().format(transactions[index].date)),
+                  ),
+                );
               },
               itemCount: transactions.length,
             ),
