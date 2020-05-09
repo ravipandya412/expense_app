@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.purple,
           fontFamily: 'Quicksand',
+          errorColor: Colors.red,
           textTheme: ThemeData.light().textTheme.copyWith(
               title: TextStyle(
                   fontFamily: 'OpenSans',
@@ -37,7 +38,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _userTransaction = [
+  final List<Transaction> _userTransactions = [
     // Transaction(
     //   id: 't1',
     //   title: 'New Shoes',
@@ -53,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   List<Transaction> get _recentTransactions {
-    return _userTransaction.where((tx) {
+    return _userTransactions.where((tx) {
       return tx.date.isAfter(DateTime.now().subtract(
         Duration(days: 7),
       ));
@@ -70,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
         date: selectedDate);
     //Adding transaction object in to list
     setState(() {
-      _userTransaction.add(newTransaction);
+      _userTransactions.add(newTransaction);
     });
   }
 
@@ -86,6 +87,14 @@ class _MyHomePageState extends State<MyHomePage> {
             behavior: HitTestBehavior.opaque,
           );
         });
+  }
+
+  void _removeTransaction(String transactionId) {
+    setState(() {
+      _userTransactions.removeWhere((transaction) {
+        return transaction.id == transactionId;
+      });
+    });
   }
 
   @override
@@ -105,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Chart(_recentTransactions),
-            TransactionList(_userTransaction),
+            TransactionList(_userTransactions,_removeTransaction),
           ],
         ),
       ),
