@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
               title: TextStyle(
                   fontFamily: 'OpenSans',
                   fontWeight: FontWeight.bold,
-                  fontSize: 18)),
+                  fontSize: 18),
+              button: TextStyle(color: Colors.white)),
           appBarTheme: AppBarTheme(
               textTheme: ThemeData.light().textTheme.copyWith(
                   title: TextStyle(
@@ -55,18 +56,18 @@ class _MyHomePageState extends State<MyHomePage> {
     return _userTransaction.where((tx) {
       return tx.date.isAfter(DateTime.now().subtract(
         Duration(days: 7),
-      ))
-      ;
+      ));
     }).toList();
   }
 
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(
+      String txTitle, double txAmount, DateTime selectedDate) {
     //After fetching value frm text fields, add those values in to object
     final newTransaction = Transaction(
         id: DateTime.now().toString(),
         title: txTitle,
         amount: txAmount,
-        date: DateTime.now());
+        date: selectedDate);
     //Adding transaction object in to list
     setState(() {
       _userTransaction.add(newTransaction);

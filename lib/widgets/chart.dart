@@ -17,14 +17,14 @@ class Chart extends StatelessWidget {
         if (recentTransactions[i].date.day == weekDay.day &&
             recentTransactions[i].date.month == weekDay.month &&
             recentTransactions[i].date.year == weekDay.year) {
-          totalSum = recentTransactions[i].amount;
+          totalSum += recentTransactions[i].amount;
         }
       }
       return {
         'day': DateFormat.E().format(weekDay).substring(0, 1),
         'amount': totalSum
       };
-    });
+    }).reversed.toList();
   }
 
   double get totalSpending {
