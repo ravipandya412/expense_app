@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Weekly Expense App',
       theme: ThemeData(
-          primarySwatch: Colors.purple,
+          primarySwatch: Colors.red,
           fontFamily: 'Quicksand',
           errorColor: Colors.red,
           textTheme: ThemeData.light().textTheme.copyWith(
